@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Scanner;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -53,6 +52,7 @@ public class ListaDiscos {
 				titulo = scanner.nextLine();
 
 				if (titulo.equals("quit")) {
+					scanner.close();
 					return;
 				}
 
@@ -71,6 +71,7 @@ public class ListaDiscos {
 
 						writer.write(json);
 						writer.close();
+						scanner.close();
 						return;
 					}
 				}
@@ -79,11 +80,13 @@ public class ListaDiscos {
 				for (Disco disco : discos) {
 					System.out.println("'" + disco.titulo() + "'" + " de " + disco.autor());
 				}
+				scanner.close();
 				return;
 			}
 			System.out.println("Comando erróneo, por favor introduce s o n");
 			System.out.println("Quieres guardar mas discos? [s/n]");
 			line = scanner.nextLine();
 		}
+		scanner.close();
 	}
 }
